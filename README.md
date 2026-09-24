@@ -103,6 +103,21 @@ curl http://localhost:8080/cursos
 ]
 ```
 
+## Proyecto `cursos-db` (CRUD con SQL Server)
+
+CRUD completo en `http://localhost:8080/api/cursos2` probado con Postman:
+
+| Método   | URL                                         |
+|----------|---------------------------------------------|
+| `GET`    | <http://localhost:8080/api/cursos2>         |
+| `GET`    | <http://localhost:8080/api/cursos2/activos> |
+| `GET`    | <http://localhost:8080/api/cursos2/1>       |
+| `POST`   | <http://localhost:8080/api/cursos2>         |
+| `PUT`    | <http://localhost:8080/api/cursos2/1>       |
+| `DELETE` | <http://localhost:8080/api/cursos2/1>       |
+
+Detalle con bodies JSON, curl y respuestas: [cursos-db/readme.md](cursos-db/readme.md)
+
 ## Tests
 
 ```bash
