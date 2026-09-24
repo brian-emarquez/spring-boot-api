@@ -1,0 +1,61 @@
+<div class="contenedor">
+  <h1>Gestión de Cursos</h1>
+
+  @if (error()) {
+    <div class="error">{{ error() }}</div>
+  }
+
+  <form (ngSubmit)="guardar()" class="formulario">
+    <h2>{{ editandoId() ? 'Editar curso #' + editandoId() : 'Nuevo curso' }}</h2>
+
+    <label>Nombre
+      <input name="nombre" [(ngModel)]="form.nombre" required>
+    </label>
+    <label>Instructor
+      <input name="instructor" [(ngModel)]="form.instructor" required>
+    </label>
+    <label>Duración (horas)
+      <input type="number" name="duracionHoras" [(ngModel)]="form.duracionHoras" min="1" required>
+    </label>
+    <label>Precio
+      <input type="number" name="precio" [(ngModel)]="form.precio" step="0.01" min="0" required>
+    </label>
+    <label class="check">
+      <input type="checkbox" name="activo" [(ngModel)]="form.activo"> Activo
+    </label>
+
+    <div class="acciones">
+      <button type="submit">{{ editandoId() ? 'Actualizar' : 'Crear' }}</button>
+      @if (editandoId()) {
+        <button type="button" class="secundario" (click)="cancelar()">Cancelar</button>
+      }
+    </div>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th><th>Nombre</th><th>Instructor</th>
+        <th>Horas</th><th>Precio</th><th>Activo</th><th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (curso of cursos(); track curso.id) {
+        <tr>
+          <td>{{ curso.id }}</td>
+          <td>{{ curso.nombre }}</td>
+          <td>{{ curso.instructor }}</td>
+          <td>{{ curso.duracionHoras }}</td>
+          <td>{{ curso.precio | number:'1.2-2' }}</td>
+          <td>{{ curso.activo ? 'Sí' : 'No' }}</td>
+          <td class="botones">
+            <button class="secundario" (click)="editar(curso)">Editar</button>
+            <button class="peligro" (click)="eliminar(curso)">Eliminar</button>
+          </td>
+        </tr>
+      } @empty {
+        <tr><td colspan="7">No hay cursos registrados</td></tr>
+      }
+    </tbody>
+  </table>
+</div>
