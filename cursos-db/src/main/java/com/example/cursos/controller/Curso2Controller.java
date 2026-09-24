@@ -1,7 +1,10 @@
-package com.example.cursos;
+package com.example.cursos.controller;
 
 import java.net.URI;
 import java.util.List;
+
+import com.example.cursos.Curso2;
+import com.example.cursos.repository.Curso2Repository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
